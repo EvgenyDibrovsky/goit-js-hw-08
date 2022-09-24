@@ -15,7 +15,18 @@ form.addEventListener(
 
 form.addEventListener('submit', e => {
   e.preventDefault();
-  console.log({ email: email.value, message: message.value });
+  const formEmail = form.elements.email.value;
+  const formMessage = form.elements.message.value;
+  const feedback = {
+    email: formEmail,
+    message: formMessage,
+  };
+
+  if (feedback.email === '' || feedback.message === '') {
+    return alert('Пожалуйста, заполните все поля!');
+  }
+
+  console.log(feedback);
   form.reset();
   localStorage.removeItem(LOCALSTORAGE_KEY);
 });
